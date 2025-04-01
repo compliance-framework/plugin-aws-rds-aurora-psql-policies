@@ -11,7 +11,6 @@ package compliance_framework.template.aws._deny_no_logging
 #     - SAMA_CCF_1.0
 #   schedule: "* * * * * *"
 
-
 controls := [
     # SAMA Cyber Security Framework v1.0
     {
