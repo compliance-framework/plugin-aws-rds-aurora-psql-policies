@@ -19,6 +19,7 @@ controls := [
         "statement-ids": [
             "5", # Enforce usage of IAM for authentication to improve security.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2#identity-and-access-management"
     },
     # SAMA IT Governance Framework v1.0
     {
@@ -27,6 +28,7 @@ controls := [
         "statement-ids": [
             "3", # Implement access controls that ensure only authorized users have access.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/it-governance-framework#access-management"
     },
     # SAMA Risk Management Guidelines v1.0
     {
@@ -35,6 +37,7 @@ controls := [
         "statement-ids": [
             "4", # Ensure that only authorized users and roles can access critical systems.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/RiskManagement#authentication-and-access-control"
     },
     # SAMA Cloud Computing Framework v1.0
     {
@@ -43,6 +46,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure cloud services implement strong authentication mechanisms.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/CloudComputing#cloud-authentication-and-access-control"
     },
 ]
 

@@ -19,6 +19,7 @@ controls := [
         "statement-ids": [
             "6.e", # Segmentation of networks
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2#infrastructure-security"
     },
     # SAMA IT Governance Framework v1.0
     {
@@ -27,6 +28,7 @@ controls := [
         "statement-ids": [
             "3", # Implement network segmentation to isolate sensitive systems from public networks.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/it-governance-framework#network-security-and-access-control"
     },
     # SAMA Risk Management Guidelines v1.0
     {
@@ -35,6 +37,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure that systems and data are not exposed to unnecessary public networks.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/RiskManagement#network-security"
     },
     # SAMA Cloud Computing Framework v1.0
     {
@@ -43,6 +46,7 @@ controls := [
         "statement-ids": [
             "5", # Ensure private networking configurations for cloud-based services.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/CloudComputing#cloud-network-security"
     },
 ]
 

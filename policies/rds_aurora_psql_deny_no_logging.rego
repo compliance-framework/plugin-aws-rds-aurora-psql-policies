@@ -19,6 +19,7 @@ controls := [
         "statement-ids": [
             "3", # Ensure proper logging and monitoring of sensitive data access.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2#data-protection"
     },
     # SAMA IT Governance Framework v1.0
     {
@@ -27,6 +28,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure systems log sensitive access events for audit and security purposes.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/it-governance-framework#logging-and-monitoring"
     },
     # SAMA Risk Management Guidelines v1.0
     {
@@ -35,6 +37,7 @@ controls := [
         "statement-ids": [
             "2", # Implement audit trails and monitoring for sensitive activities.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/RiskManagement#audit-and-monitoring"
     },
     # SAMA Cloud Computing Framework v1.0
     {
@@ -43,6 +46,7 @@ controls := [
         "statement-ids": [
             "3", # Ensure logging and monitoring are implemented for cloud-based databases.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/CloudComputing#cloud-data-protection"
     },
 ]
 

@@ -19,6 +19,7 @@ controls := [
         "statement-ids": [
             "2", # Ensure proper update management and patching.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2#identity-and-access-management"
     },
     # SAMA IT Governance Framework v1.0
     {
@@ -27,6 +28,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure patching processes are defined and timely applied.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/it-governance-framework#patch-management"
     },
     # SAMA Risk Management Guidelines v1.0
     {
@@ -35,6 +37,7 @@ controls := [
         "statement-ids": [
             "2", # Ensure vulnerabilities are mitigated through timely patching.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/RiskManagement#vulnerability-and-patch-management"
     },
     # SAMA Cloud Computing Framework v1.0
     {
@@ -43,6 +46,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure that cloud services are patched with the latest updates and patches.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/CloudComputing#cloud-patch-and-update-management"
     },
 ]
 

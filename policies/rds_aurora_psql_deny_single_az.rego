@@ -20,6 +20,7 @@ controls := [
             "1", # Define, approve, and implement a data backup management strategy.
             "2", # Ensure backup policies include considerations for backup frequency, storage, and security.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2#data-backup-and-recoverability"
     },
     # SAMA IT Governance Framework v1.0
     {
@@ -28,6 +29,7 @@ controls := [
         "statement-ids": [
             "4", # Implement high-availability architectures to ensure business continuity.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/it-governance-framework#resilience-and-availability"
     },
     # SAMA Risk Management Guidelines v1.0
     {
@@ -36,6 +38,7 @@ controls := [
         "statement-ids": [
             "3", # Ensure availability strategies include multi-availability zone deployments.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/RiskManagement#availability-and-recovery"
     },
     # SAMA Cloud Computing Framework v1.0
     {
@@ -44,6 +47,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure cloud-based applications and databases have multi-AZ deployment for fault tolerance.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/CloudComputing#cloud-resilience"
     },
 ]
 

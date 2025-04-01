@@ -19,6 +19,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure proper encryption for data at rest.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2#data-protection"
     },
     # SAMA IT Governance Framework v1.0
     {
@@ -27,6 +28,7 @@ controls := [
         "statement-ids": [
             "3", # Ensure implementation of data encryption for sensitive data.
         ],
+        "control-link": "https://rulebook.sama.gov.sa/en/it-governance-framework#data-protection"
     },
     # SAMA Risk Management Guidelines v1.0
     {
@@ -35,6 +37,7 @@ controls := [
         "statement-ids": [
             "1", # Ensure encryption mechanisms for protecting sensitive data.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/RiskManagement#data-protection-and-security"
     },
     # SAMA Cloud Computing Framework v1.0
     {
@@ -43,6 +46,7 @@ controls := [
         "statement-ids": [
             "2", # Ensure that all sensitive data in the cloud is encrypted.
         ],
+        "control-link": "https://www.sama.gov.sa/en/RulesInstructions/CloudComputing#cloud-security"
     },
 ]
 
