@@ -1,7 +1,7 @@
-package compliance_framework.template.aws._deny_unencrypted_storage
+package compliance_framework.deny_unencrypted_storage
 
-violation[{
-  "title": "RDS instance storage encryption is not enabled",
-}] if {
+violation[{}] if {
   not input.StorageEncrypted
 }
+
+title := "RDS Instance storage is encrypted"

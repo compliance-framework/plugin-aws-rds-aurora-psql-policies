@@ -1,7 +1,7 @@
-package compliance_framework.template.aws._deny_public_subnet
+package compliance_framework.deny_public_subnet
 
-violation[{
-  "title": "RDS instance is deployed in a public subnet",
-}] if {
+violation[{}] if {
   input.PubliclyAccessible
 }
+
+title := "RDS Instance is not publicly accessible"
