@@ -1,7 +1,7 @@
-package compliance_framework.template.aws._deny_no_iam_auth
+package compliance_framework.deny_no_iam_auth
 
-violation[{
-  "title": "IAM database authentication is not enabled",
-}] if {
+violation[{}] if {
   not input.IamDatabaseAuthenticationEnabled
 }
+
+title := "IAM database authentication enabled"
