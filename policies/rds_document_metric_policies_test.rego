@@ -171,6 +171,23 @@ test_deletion_audit_flags_missing_final_snapshot_identifier if {
 	violations[{"id": "deletion_event_missing_final_snapshot_identifier"}]
 }
 
+test_deletion_audit_skips_non_database_resources if {
+	deletion_event_skip := {
+		"event_name": "DeleteDBInstance",
+		"cloudtrail_event": "{\"requestParameters\":{\"skipFinalSnapshot\":true}}",
+	}
+	deletion_event_missing := {
+		"event_name": "DeleteDBCluster",
+		"cloudtrail_event": "{\"requestParameters\":{\"skipFinalSnapshot\":false}}",
+	}
+	test_input := object.union_n([compliant_snapshot_input, {
+		"dynamic": {
+			"cloudtrail_events": [deletion_event_skip, deletion_event_missing],
+		},
+	}])
+	count(data.compliance_framework.rds_deletion_audit_events.violation) == 0 with input as test_input
+}
+
 test_log_exports_flags_missing_required_logs if {
 	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"enabled_cloudwatch_logs_exports": []})}])
 	violations := data.compliance_framework.rds_log_exports.violation with input as test_input

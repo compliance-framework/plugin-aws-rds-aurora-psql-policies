@@ -98,9 +98,11 @@ violation[{"id": "deletion_audit_event_missing"}] if {
 }
 
 violation[{"id": "deletion_event_skipped_final_snapshot"}] if {
+	resource_type in {"db-instance", "db-cluster"}
 	skipped_final_snapshot_count > 0
 }
 
 violation[{"id": "deletion_event_missing_final_snapshot_identifier"}] if {
+	resource_type in {"db-instance", "db-cluster"}
 	missing_final_snapshot_identifier_count > 0
 }
