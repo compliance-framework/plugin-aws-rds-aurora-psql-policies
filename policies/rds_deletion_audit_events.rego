@@ -53,6 +53,13 @@ delete_event_skips_final_snapshot(event) if {
 	object.get(params, "skipFinalSnapshot", false) == true
 }
 
+invalid_cloudtrail_json(event) if {
+	deletion_event(event)
+	raw := object.get(event, "cloudtrail_event", "")
+	raw != ""
+	not json.unmarshal(raw)
+}
+
 final_snapshot_identifier_present(params) if {
 	object.get(params, "finalDBSnapshotIdentifier", "") != ""
 }
@@ -78,6 +85,7 @@ delete_event_missing_final_snapshot_identifier(event) if {
 deletion_event_count := count({event | event := cloudtrail_events[_]; deletion_event(event)})
 skipped_final_snapshot_count := count({event | event := cloudtrail_events[_]; delete_event_skips_final_snapshot(event)})
 missing_final_snapshot_identifier_count := count({event | event := cloudtrail_events[_]; delete_event_missing_final_snapshot_identifier(event)})
+invalid_json_count := count({event | event := cloudtrail_events[_]; invalid_cloudtrail_json(event)})
 
 default deletion_audit_required := false
 
@@ -90,7 +98,7 @@ deletion_audit_required if {
 }
 
 title := sprintf("Validate RDS deletion audit events for %s", [resource_id])
-description := sprintf("RDS resource %s has %d deletion events in CloudTrail, %d deletion events that skipped the final snapshot, and %d deletion events missing a final snapshot identifier; deletion audit required=%v.", [resource_id, deletion_event_count, skipped_final_snapshot_count, missing_final_snapshot_identifier_count, deletion_audit_required])
+description := sprintf("RDS resource %s has %d deletion events in CloudTrail, %d deletion events that skipped the final snapshot, %d deletion events missing a final snapshot identifier, and %d events with invalid JSON; deletion audit required=%v.", [resource_id, deletion_event_count, skipped_final_snapshot_count, missing_final_snapshot_identifier_count, invalid_json_count, deletion_audit_required])
 
 violation[{"id": "deletion_audit_event_missing"}] if {
 	resource_type in {"db-instance", "db-cluster"}
@@ -106,4 +114,9 @@ violation[{"id": "deletion_event_skipped_final_snapshot"}] if {
 violation[{"id": "deletion_event_missing_final_snapshot_identifier"}] if {
 	resource_type in {"db-instance", "db-cluster"}
 	missing_final_snapshot_identifier_count > 0
+}
+
+violation[{"id": "deletion_event_invalid_cloudtrail_json"}] if {
+	resource_type in {"db-instance", "db-cluster"}
+	invalid_json_count > 0
 }

@@ -45,5 +45,6 @@ violation[{"id": "storage_not_encrypted"}] if {
 
 violation[{"id": "kms_key_missing"}] if {
 	is_database_resource
+	storage_encrypted == true
 	kms_key_id == ""
 }
