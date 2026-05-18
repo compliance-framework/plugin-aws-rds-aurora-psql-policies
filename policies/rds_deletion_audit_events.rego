@@ -53,6 +53,9 @@ delete_event_skips_final_snapshot(event) if {
 	object.get(params, "skipFinalSnapshot", false) == true
 }
 
+# In Rego, json.unmarshal does not raise errors on invalid JSON - it simply fails to match.
+# This pattern (not json.unmarshal) correctly detects invalid JSON without causing evaluation errors.
+
 invalid_cloudtrail_json(event) if {
 	deletion_event(event)
 	raw := object.get(event, "cloudtrail_event", "")
