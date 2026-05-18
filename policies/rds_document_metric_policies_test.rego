@@ -207,7 +207,29 @@ test_iam_auth_flags_disabled if {
 }
 
 test_tls_enforcement_flags_missing_ssl if {
-	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"ssl_enforcement": {}})}])
+	test_input := {
+		"resource": compliant_input.resource,
+		"config": {
+			"storage_encrypted": compliant_input.config.storage_encrypted,
+			"kms_key_id": compliant_input.config.kms_key_id,
+			"publicly_accessible": compliant_input.config.publicly_accessible,
+			"vpc_security_groups": compliant_input.config.vpc_security_groups,
+			"db_subnet_group": compliant_input.config.db_subnet_group,
+			"iam_database_authentication_enabled": compliant_input.config.iam_database_authentication_enabled,
+			"ssl_enforcement": {},
+			"ca_certificate_identifier": compliant_input.config.ca_certificate_identifier,
+			"deletion_protection": compliant_input.config.deletion_protection,
+			"backup_retention_period": compliant_input.config.backup_retention_period,
+			"latest_restorable_time": compliant_input.config.latest_restorable_time,
+			"multi_az": compliant_input.config.multi_az,
+			"enabled_cloudwatch_logs_exports": compliant_input.config.enabled_cloudwatch_logs_exports,
+			"monitoring_interval": compliant_input.config.monitoring_interval,
+		},
+		"snapshots": compliant_input.snapshots,
+		"dynamic": compliant_input.dynamic,
+		"collection": compliant_input.collection,
+		"policy_inputs": compliant_input.policy_inputs,
+	}
 	violations := data.compliance_framework.rds_tls_enforcement.violation with input as test_input
 	violations[{"id": "ssl_not_enforced"}]
 }
