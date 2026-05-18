@@ -197,7 +197,7 @@ test_log_exports_flags_missing_required_logs if {
 test_storage_encryption_flags_unencrypted_database if {
 	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"storage_encrypted": false})}])
 	violations := data.compliance_framework.rds_database_storage_encryption.violation with input as test_input
-	violations[{"id": "storage_unencrypted"}]
+	violations[{"id": "storage_not_encrypted"}]
 }
 
 test_iam_auth_flags_disabled if {
@@ -209,7 +209,7 @@ test_iam_auth_flags_disabled if {
 test_tls_enforcement_flags_missing_ssl if {
 	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"ssl_enforcement": {}})}])
 	violations := data.compliance_framework.rds_tls_enforcement.violation with input as test_input
-	violations[{"id": "tls_enforcement_missing"}]
+	violations[{"id": "ssl_not_enforced"}]
 }
 
 test_deletion_protection_flags_disabled if {
@@ -233,16 +233,16 @@ test_backup_retention_flags_exceeds_privacy_limit if {
 	violations[{"id": "backup_retention_exceeds_privacy_limit"}]
 }
 
-test_multi_az_flags_single_az when required if {
+test_multi_az_flags_single_az_when_required if {
 	test_input := object.union_n([compliant_input, {
 		"config": object.union(compliant_input.config, {"multi_az": false}),
 		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_multi_az": true}),
 	}])
 	violations := data.compliance_framework.rds_multi_az_redundancy.violation with input as test_input
-	violations[{"id": "multi_az_disabled"}]
+	violations[{"id": "multi_az_missing"}]
 }
 
-test_capacity_monitoring_flags_missing_metrics when required if {
+test_capacity_monitoring_flags_missing_metrics_when_required if {
 	test_input := object.union_n([compliant_input, {
 		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_capacity_metrics": true}),
 	}])
@@ -250,7 +250,7 @@ test_capacity_monitoring_flags_missing_metrics when required if {
 	violations[{"id": "capacity_metric_data_missing"}]
 }
 
-test_management_audit_flags_missing_events when required if {
+test_management_audit_flags_missing_events_when_required if {
 	test_input := object.union_n([compliant_input, {
 		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_rds_management_audit_events": true}),
 	}])
