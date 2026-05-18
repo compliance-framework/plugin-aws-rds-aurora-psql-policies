@@ -38,6 +38,22 @@ cloudtrail_events contains event if {
 
 cloudtrail_events contains event if {
 	event := object.get(dynamic, "account_cloudtrail_events", [])[_]
+	raw := object.get(event, "cloudtrail_event", "")
+	raw != ""
+	payload := json.unmarshal(raw)
+	params := object.get(payload, "requestParameters", {})
+	db_instance_id := object.get(params, "dBInstanceIdentifier", object.get(params, "DBInstanceIdentifier", ""))
+	db_instance_id == resource_id
+}
+
+cloudtrail_events contains event if {
+	event := object.get(dynamic, "account_cloudtrail_events", [])[_]
+	raw := object.get(event, "cloudtrail_event", "")
+	raw != ""
+	payload := json.unmarshal(raw)
+	params := object.get(payload, "requestParameters", {})
+	db_cluster_id := object.get(params, "dBClusterIdentifier", object.get(params, "DBClusterIdentifier", ""))
+	db_cluster_id == resource_id
 }
 
 deletion_event(event) if {
