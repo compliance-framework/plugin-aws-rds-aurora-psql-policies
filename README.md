@@ -53,7 +53,7 @@ the selected snapshot list attached to that resource.
 Common optional `policy_inputs`:
 
 - `minimum_backup_retention_days`, default `1`
-- `maximum_personal_information_retention_days`, default `365`
+- `maximum_personal_information_retention_days`, default `35`
 - `maximum_pitr_lag_hours`, default `24`
 - `approved_snapshot_accounts`, default `[]`
 - `fail_on_unknown_snapshot_sharing`, default `true`

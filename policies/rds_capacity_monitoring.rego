@@ -6,7 +6,8 @@ import future.keywords.in
 # title: RDS capacity monitoring evidence is present
 # description: Checks whether the current RDS or Aurora database has enhanced monitoring enabled and CloudWatch capacity metrics when those evidence requirements are enabled by policy inputs.
 # custom:
-#   metric_id: RDS_AVAILABILITY_BACKUP_RESTORE
+#   metric_ids:
+#     - RDS_AVAILABILITY_BACKUP_RESTORE
 #   controls:
 #     - ctrl-a1-1-002
 

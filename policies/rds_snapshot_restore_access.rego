@@ -26,7 +26,7 @@ snapshot_type := object.get(config, "snapshot_type", "unknown")
 snapshot_create_time := object.get(config, "snapshot_create_time", "")
 approved_accounts := object.get(policy_inputs, "approved_snapshot_accounts", [])
 fail_on_unknown_sharing := object.get(policy_inputs, "fail_on_unknown_snapshot_sharing", true)
-public := object.get(config, "public", false)
+public := object.get(config, "public", null)
 shared_accounts := object.get(config, "shared_accounts", [])
 unapproved_accounts := {account_id | account_id := shared_accounts[_]; not account_id in approved_accounts}
 

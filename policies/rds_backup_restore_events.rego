@@ -6,7 +6,8 @@ import future.keywords.in
 # title: RDS backup and restore event evidence is present
 # description: Checks whether the current RDS or Aurora database has RDS backup and restoration events in the collected dynamic evidence when those event requirements are enabled.
 # custom:
-#   metric_id: RDS_AVAILABILITY_BACKUP_RESTORE
+#   metric_ids:
+#     - RDS_AVAILABILITY_BACKUP_RESTORE
 #   controls:
 #     - ctrl-a1-2-008
 #     - ctrl-a1-2-010

@@ -4,7 +4,7 @@ import future.keywords.in
 
 # METADATA
 # title: RDS backup retention meets policy
-# description: Checks whether the current RDS or Aurora database backup retention period meets the configured minimum and, when configured for privacy workloads, does not exceed the maximum personal-information retention period.
+# description: Checks whether the current RDS or Aurora database backup retention period meets the configured minimum and does not exceed the maximum personal-information retention period.
 # custom:
 #   metric_ids:
 #     - RDS_AVAILABILITY_BACKUP_RESTORE
@@ -27,7 +27,7 @@ resource_type := object.get(resource, "type", "")
 resource_id := object.get(resource, "id", object.get(config, "db_instance_identifier", object.get(config, "db_cluster_identifier", "unknown")))
 backup_retention_period := object.get(config, "backup_retention_period", 0)
 minimum_days := object.get(policy_inputs, "minimum_backup_retention_days", 1)
-maximum_pi_days := object.get(policy_inputs, "maximum_personal_information_retention_days", 35)
+maximum_pi_days := object.get(policy_inputs, "maximum_personal_information_retention_days", 365)
 
 skip_reason := sprintf("Resource type %q is not an RDS database resource; this policy only applies to db-instance and db-cluster resources.", [resource_type]) if {
 	not resource_type in {"db-instance", "db-cluster"}

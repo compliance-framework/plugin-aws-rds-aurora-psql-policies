@@ -6,7 +6,8 @@ import future.keywords.in
 # title: RDS IAM database authentication is enabled
 # description: Checks whether the current RDS or Aurora database supports IAM database authentication so access can be revoked through IAM identity and policy changes.
 # custom:
-#   metric_id: DATA_STORE_ENCRYPTION_ACCESS
+#   metric_ids:
+#     - DATA_STORE_ENCRYPTION_ACCESS
 #   controls:
 #     - ctrl-cc6-2-014
 #     - ctrl-cc6-2-018

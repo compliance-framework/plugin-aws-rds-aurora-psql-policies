@@ -1,6 +1,7 @@
 package compliance_framework.rds_deletion_audit_events
 
 import future.keywords.in
+import future.keywords.contains
 
 # METADATA
 # title: RDS deletion audit events are controlled
