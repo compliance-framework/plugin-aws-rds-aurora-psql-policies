@@ -5,7 +5,7 @@ Get the current unresolved review threads with `gh pr-review review view --unres
 
 Address them. Focus on doing minimal changes. Focus on making sure test coverage is up to date if needed. Focus on reusing existing code if possible.
 
-After Addressing them, commit the changes with `git add -A && git commit -m "fix: copilot issues"
+After Addressing them, commit the changes with `git add -A && git commit -m "fix: copilot issues"`
 
 Push the changes with `git push`
 

@@ -193,3 +193,67 @@ test_log_exports_flags_missing_required_logs if {
 	violations := data.compliance_framework.rds_log_exports.violation with input as test_input
 	violations[{"id": "required_log_exports_missing"}]
 }
+
+test_storage_encryption_flags_unencrypted_database if {
+	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"storage_encrypted": false})}])
+	violations := data.compliance_framework.rds_database_storage_encryption.violation with input as test_input
+	violations[{"id": "storage_unencrypted"}]
+}
+
+test_iam_auth_flags_disabled if {
+	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"iam_database_authentication_enabled": false})}])
+	violations := data.compliance_framework.rds_iam_database_auth.violation with input as test_input
+	violations[{"id": "iam_database_authentication_disabled"}]
+}
+
+test_tls_enforcement_flags_missing_ssl if {
+	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"ssl_enforcement": {}})}])
+	violations := data.compliance_framework.rds_tls_enforcement.violation with input as test_input
+	violations[{"id": "tls_enforcement_missing"}]
+}
+
+test_deletion_protection_flags_disabled if {
+	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"deletion_protection": false})}])
+	violations := data.compliance_framework.rds_deletion_protection.violation with input as test_input
+	violations[{"id": "deletion_protection_disabled"}]
+}
+
+test_backup_retention_flags_too_short if {
+	test_input := object.union_n([compliant_input, {"config": object.union(compliant_input.config, {"backup_retention_period": 0})}])
+	violations := data.compliance_framework.rds_backup_retention.violation with input as test_input
+	violations[{"id": "backup_retention_too_short"}]
+}
+
+test_backup_retention_flags_exceeds_privacy_limit if {
+	test_input := object.union_n([compliant_input, {
+		"config": object.union(compliant_input.config, {"backup_retention_period": 400}),
+		"policy_inputs": object.union(compliant_input.policy_inputs, {"maximum_personal_information_retention_days": 365}),
+	}])
+	violations := data.compliance_framework.rds_backup_retention.violation with input as test_input
+	violations[{"id": "backup_retention_exceeds_privacy_limit"}]
+}
+
+test_multi_az_flags_single_az when required if {
+	test_input := object.union_n([compliant_input, {
+		"config": object.union(compliant_input.config, {"multi_az": false}),
+		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_multi_az": true}),
+	}])
+	violations := data.compliance_framework.rds_multi_az_redundancy.violation with input as test_input
+	violations[{"id": "multi_az_disabled"}]
+}
+
+test_capacity_monitoring_flags_missing_metrics when required if {
+	test_input := object.union_n([compliant_input, {
+		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_capacity_metrics": true}),
+	}])
+	violations := data.compliance_framework.rds_capacity_monitoring.violation with input as test_input
+	violations[{"id": "capacity_metric_data_missing"}]
+}
+
+test_management_audit_flags_missing_events when required if {
+	test_input := object.union_n([compliant_input, {
+		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_rds_management_audit_events": true}),
+	}])
+	violations := data.compliance_framework.rds_management_audit_events.violation with input as test_input
+	violations[{"id": "rds_management_audit_event_missing"}]
+}
