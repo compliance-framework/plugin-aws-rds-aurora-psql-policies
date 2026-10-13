@@ -1,0 +1,6 @@
+lisa-design:
+- ci.yml is a verbatim copy of mock-plugin-policies-1's caller (workflows v1.5.1 @7b55019); policies live in policies/, so no directory input.
+- Fix errors only (user decision 2026-10-13): only opa fmt failed; Regal reports 118 warnings and 0 errors with the shared config, and warnings are intentionally left as they are.
+- No repo .regal/config.yaml: CI must use the shared config from compliance-framework/workflows.
+- release.yml and build-and-upload.yml are untouched (W3 replaces them); actionlint 1.7.12 passes on them.
+- Behaviour unchanged: data.compliance_framework evaluated on 145 inputs (both test fixtures plus hand-made variants covering all 33 violation ids, null/false/missing/malformed fields), with byte-identical JSON on main and on the branch.
