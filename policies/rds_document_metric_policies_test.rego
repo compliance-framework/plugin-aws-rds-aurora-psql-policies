@@ -53,9 +53,7 @@ compliant_snapshot_input := {
 		"shared_accounts": [],
 		"public": false,
 	},
-	"policy_inputs": {
-		"approved_snapshot_accounts": [],
-	},
+	"policy_inputs": {"approved_snapshot_accounts": []},
 }
 
 test_compliant_input_has_no_document_policy_violations if {
@@ -180,11 +178,7 @@ test_deletion_audit_skips_non_database_resources if {
 		"event_name": "DeleteDBCluster",
 		"cloudtrail_event": "{\"requestParameters\":{\"skipFinalSnapshot\":false}}",
 	}
-	test_input := object.union_n([compliant_snapshot_input, {
-		"dynamic": {
-			"cloudtrail_events": [deletion_event_skip, deletion_event_missing],
-		},
-	}])
+	test_input := object.union_n([compliant_snapshot_input, {"dynamic": {"cloudtrail_events": [deletion_event_skip, deletion_event_missing]}}])
 	count(data.compliance_framework.rds_deletion_audit_events.violation) == 0 with input as test_input
 }
 
@@ -265,17 +259,13 @@ test_multi_az_flags_single_az_when_required if {
 }
 
 test_capacity_monitoring_flags_missing_metrics_when_required if {
-	test_input := object.union_n([compliant_input, {
-		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_capacity_metrics": true}),
-	}])
+	test_input := object.union_n([compliant_input, {"policy_inputs": object.union(compliant_input.policy_inputs, {"require_capacity_metrics": true})}])
 	violations := data.compliance_framework.rds_capacity_monitoring.violation with input as test_input
 	violations[{"id": "capacity_metric_data_missing"}]
 }
 
 test_management_audit_flags_missing_events_when_required if {
-	test_input := object.union_n([compliant_input, {
-		"policy_inputs": object.union(compliant_input.policy_inputs, {"require_rds_management_audit_events": true}),
-	}])
+	test_input := object.union_n([compliant_input, {"policy_inputs": object.union(compliant_input.policy_inputs, {"require_rds_management_audit_events": true})}])
 	violations := data.compliance_framework.rds_management_audit_events.violation with input as test_input
 	violations[{"id": "rds_management_audit_event_missing"}]
 }

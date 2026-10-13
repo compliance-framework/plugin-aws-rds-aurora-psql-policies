@@ -1,7 +1,7 @@
 package compliance_framework.rds_management_audit_events
 
-import future.keywords.in
 import future.keywords.contains
+import future.keywords.in
 
 # METADATA
 # title: RDS management audit events are present
