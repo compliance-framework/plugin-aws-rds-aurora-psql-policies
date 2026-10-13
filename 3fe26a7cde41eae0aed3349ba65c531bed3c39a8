@@ -4,3 +4,6 @@ lisa-design:
 - No repo .regal/config.yaml: CI must use the shared config from compliance-framework/workflows.
 - release.yml and build-and-upload.yml are untouched (W3 replaces them); actionlint 1.7.12 passes on them.
 - Behaviour unchanged: data.compliance_framework evaluated on 145 inputs (both test fixtures plus hand-made variants covering all 33 violation ids, null/false/missing/malformed fields), with byte-identical JSON on main and on the branch.
+
+lisa-selfreview:
+- pass 1: approve, no findings (diff is opa fmt output + mock ci.yml; local opa fmt/check --strict/test/build, regal, actionlint all pass).
