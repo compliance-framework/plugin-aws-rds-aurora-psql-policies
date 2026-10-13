@@ -1,0 +1,2 @@
+lisa-selfreview:
+Pass 1/4 (core, rego-policy): approve, no findings. Callers copied from plugin-file-attestation-policies#4 (mock-plugin-policies-1 at v1.5.2); all 7 shared-workflow pins are 6e7fc9c # v1.5.2; release-please-config.json equals workflows defaults.json minus packages; manifest seeded 0.3.0 (v0.3.0 = releases/latest, ancestor of main). actionlint v1.7.12 clean; OPA 1.14.1 check clean, test 25/25, `opa build -b policies` and `opa build --bundle policies` byte-identical (sha256 c44781eb...). README describes make build only, not releasing: unchanged.
